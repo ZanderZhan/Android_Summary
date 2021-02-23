@@ -1,0 +1,3 @@
+include ':ActivityResultApi'
+include ':app'
+rootProject.name = "Android_Summary"

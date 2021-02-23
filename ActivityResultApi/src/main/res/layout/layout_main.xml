@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="1.startActivityForResult"
+        android:gravity="left|center_vertical"/>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="2.registerForActivityResult"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="3.StartActivityForResult"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="4.StartIntentSenderForResult"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="5.RequestMultiplePermissions"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="6.TakePicturePreview"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="7.TakePicture"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="8.TakeVideo"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="9.PickContact"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="9.GetContent\getMultiContent"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="10.OpenDocument、OpenMultiDocument"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="11.OpenDocumentTree"
+        android:gravity="left|center_vertical" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAllCaps="false"
+        android:text="12.CreateDocument"
+        android:gravity="left|center_vertical" />
+
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25sp"
+        android:textColor="@color/design_default_color_on_background"
+        android:text="get content from second activity:"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+
+</LinearLayout>
+
+</ScrollView>
