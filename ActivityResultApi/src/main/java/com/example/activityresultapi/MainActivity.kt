@@ -56,6 +56,14 @@ class MainActivity: AppCompatActivity() {
             }, Request_Code_1)
         }
 
+        // 2. result api，如果你在 onClick 里面 注册，将会得到一个 Exception
+//        findViewById<Button>(R.id.button1).setOnClickListener {
+//            val myActivityLauncher = registerForActivityResult(myActivityResult) { result ->
+//                findViewById<TextView>(R.id.result).text = "get content from second activity: $result"
+//            }
+//            myActivityLauncher.launch("from result api")
+//        }
+
         // 2. result api
         val myActivityLauncher = registerForActivityResult(myActivityResult) { result ->
             findViewById<TextView>(R.id.result).text = "get content from second activity: $result"
