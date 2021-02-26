@@ -14,7 +14,15 @@
     <Button
         android:id="@+id/activity_result"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="40dp"
         android:text="Activity Result Api"
         android:gravity="left|center_vertical"/>
+
+    <Button
+        android:id="@+id/scoped_storage"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Scoped Storage"
+        android:gravity="left|center_vertical"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>

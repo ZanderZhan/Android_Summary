@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.activity_result).setOnClickListener {
             startActivity(Intent(baseContext, MainActivity::class.java))
         }
+
+        findViewById<Button>(R.id.scoped_storage).setOnClickListener {
+            startActivity(Intent(baseContext, com.example.scopedstorage.MainActivity::class.java))
+        }
     }
 
 }
