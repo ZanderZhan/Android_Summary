@@ -91,13 +91,8 @@ class MainActivity: AppCompatActivity() {
             }
         }
         findViewById<Button>(R.id.button3).setOnClickListener {
-            val intent = Intent(ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(EXTRA_TEXT, "from ActivityResultContracts - StartIntentSenderForResult")
-            val pendingIntent = PendingIntent.getBroadcast(
-                baseContext, 1111, intent, PendingIntent.FLAG_UPDATE_CURRENT
-            )
-            startActivitySenderForResultLauncher.launch(IntentSenderRequest.Builder(pendingIntent).build())
+            // todo need a pending intent
+//            startActivitySenderForResultLauncher.launch()
         }
 
         // 5. 预定义 contract - RequestMultiplePermissions，RequestPermission
