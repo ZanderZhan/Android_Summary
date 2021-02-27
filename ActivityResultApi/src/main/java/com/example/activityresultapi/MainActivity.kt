@@ -84,7 +84,7 @@ class MainActivity: AppCompatActivity() {
             })
         }
 
-        // 4. 预定义 contract - StartIntentSenderForResult
+        // 4. 预定义 contract - Start`IntentSe`nderForResult
         val startActivitySenderForResultLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
             if (it.resultCode == RESULT_OK) {
                 findViewById<TextView>(R.id.result).text = "get content from second activity: ${it.data?.getStringExtra("result")}"

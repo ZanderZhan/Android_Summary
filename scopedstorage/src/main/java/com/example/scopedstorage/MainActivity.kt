@@ -1,20 +1,22 @@
 package com.example.scopedstorage
 
-import android.content.ContentResolver
-import android.content.ContentUris
+import android.app.RecoverableSecurityException
 import android.content.ContentValues
+import android.content.IntentSender
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
+import com.example.scopedstorage.toolkit.MediaQuery
 import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
@@ -53,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             // 1. 存图片时将 uri 保存下来
 //            val uri = picUri
             // 2. 通过 name 去查询 uri
-            val uri = getContentUriByName(name)
+            val uri = MediaQuery.with(baseContext).queryImagesByName(name).firstOrNull()
             if (uri != null) {
                 val result = baseContext.contentResolver.delete(uri, null, null)
                 if (result > 0) {
@@ -62,6 +64,60 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(baseContext, "删除失败", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        // 查询
+        findViewById<Button>(R.id.button_3).setOnClickListener {
+            val result = MediaQuery
+                    .with(baseContext)
+                    .queryAllImages()
+            findViewById<TextView>(R.id.text_info).text =
+                    "获取图片列表：\n${result.joinToString("\n")}"
+        }
+
+        val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+            Toast.makeText(baseContext, if (it) "成功获取" else "拒绝了", Toast.LENGTH_SHORT).show()
+        }
+        // 获取系统外部文件的读取权限 READ_EXTERNAL_STORAGE
+        findViewById<Button>(R.id.button_4).setOnClickListener {
+            permissionLauncher.launch(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
+
+        val deleteLauncher = registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {
+            if (it.resultCode == RESULT_OK) {
+                Toast.makeText(baseContext, "获取成功，你可以继续后面的操作了", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(baseContext, "获取失败", Toast.LENGTH_SHORT).show()
+            }
+        }
+        // 删除系统图片
+        findViewById<Button>(R.id.button_5).setOnClickListener {
+            val results = MediaQuery
+                    .with(baseContext)
+                    .queryAllImages()
+            if (results.isNotEmpty()) {
+                try {
+                    val result = baseContext.contentResolver.delete(results.first(), null, null)
+                    if (result > 0) {
+                        Toast.makeText(baseContext, "删除成功", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(baseContext, "删除失败", Toast.LENGTH_SHORT).show()
+                    }
+                } catch (securityException: SecurityException) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        val recoverableSecurityException = securityException as? RecoverableSecurityException
+                                ?: throw RuntimeException(securityException.message, securityException)
+
+                        val intentSender = recoverableSecurityException.userAction.actionIntent.intentSender
+                        intentSender?.let {
+                            deleteLauncher.launch(IntentSenderRequest.Builder(it).build())
+                        }
+                    } else {
+                        throw RuntimeException(securityException.message, securityException)
+                    }
+                }
+            }
+
         }
     }
 
@@ -72,8 +128,8 @@ class MainActivity : AppCompatActivity() {
         contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, name)
         contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg}")
         val contentUri = baseContext.contentResolver.insert(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            contentValues
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                contentValues
         )
 
         if (contentUri != null) {
@@ -103,47 +159,4 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
-    fun getContentUriByName(name: String): Uri? {
-
-        var result: Uri? = null
-
-        val collection = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL)
-        } else MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-
-        val projection = arrayOf(
-            MediaStore.Images.Media._ID,
-            MediaStore.Images.Media.DISPLAY_NAME,
-            MediaStore.Images.Media.SIZE
-        )
-
-        val selection = "${MediaStore.Images.Media.DISPLAY_NAME} = ?"
-        val selectionArgs = arrayOf(name)
-
-        val sortOrder = "${MediaStore.Images.Media.DISPLAY_NAME} ASC"
-
-        val query = baseContext.contentResolver.query(collection, projection, selection, selectionArgs, sortOrder)
-
-        query?.use { cursor ->
-            val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)
-            val nameColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)
-            val sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)
-
-            while (cursor.moveToNext()) {
-                val id = cursor.getLong(idColumn)
-                val name = cursor.getString(nameColumn)
-                val size = cursor.getString(sizeColumn)
-
-                result = ContentUris.withAppendedId(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    id
-                )
-
-                return@use
-            }
-
-        }
-
-        return result
-    }
 }
