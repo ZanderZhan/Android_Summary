@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.activityresultapi.MainActivity
+import com.example.coroutines.CoroutinesActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.scoped_storage).setOnClickListener {
             startActivity(Intent(baseContext, com.example.scopedstorage.MainActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.kotlin_coroutine).setOnClickListener {
+            startActivity(Intent(baseContext, CoroutinesActivity::class.java))
         }
     }
 
