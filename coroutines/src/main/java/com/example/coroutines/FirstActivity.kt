@@ -2,32 +2,29 @@ package com.example.coroutines
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import java.lang.Exception
+import android.util.Log
+import kotlinx.coroutines.*
 
 class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // 1. launch 创建 https://pl.kotl.in/HFt360JL5
-        val job = GlobalScope.launch {
-            log("1")
-            log("2")
-            log("3")
-            try {
-                delay(100)
-            } catch (e: Exception) {
-                log("exception: $e")
-            }
-            log("4")
-        }
-
-        log("5")    // 5 跟 1 的先后也是不确定的。
-        job.cancel()    // 这个 cancel 的机制是怎样的？为什么有时候没有跑到 1、2、3，有时候却能跑到？
-        log("6")
+//        val job = GlobalScope.launch {
+//            log("1")
+//            log("2")
+//            log("3")
+//            try {
+//                delay(100)
+//            } catch (e: Exception) {
+//                log("exception: $e")
+//            }
+//            log("4")
+//        }
+//
+//        log("5")    // 5 跟 1 的先后也是不确定的。
+//        job.cancel()    // 这个 cancel 的机制是怎样的？为什么有时候没有跑到 1、2、3，有时候却能跑到？
+//        log("6")
 
         // 2. async 创建
 //        GlobalScope.launch {
@@ -118,5 +115,27 @@ class FirstActivity : AppCompatActivity() {
 //            job.join()
 //            log("5")
 //        }
+
+//        runBlocking {
+//            launch {
+//                delay(200L)
+//                log("Task from runBlocking")
+//            }
+//
+//            coroutineScope { // Creates a coroutine scope
+//                launch {
+//                    delay(500L)
+//                    log("Task from nested launch")
+//                }
+//
+//                delay(100L)
+//                log("Task from coroutine scope") // This line will be printed before the nested launch
+//            }
+//
+//            log("Coroutine scope is over") //
+//        }
+//
+//        log("------ end ------")
+
     }
 }
