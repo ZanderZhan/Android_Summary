@@ -1,3 +1,5 @@
+include ':benchmarks'
+include ':kotlinx-coroutines-core'
 include ':coroutines'
 include ':scopedstorage'
 include ':ActivityResultApi'

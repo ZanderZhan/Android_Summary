@@ -29,6 +29,10 @@ class CoroutinesActivity : AppCompatActivity() {
             startActivity(Intent(baseContext, SecondActivity::class.java))
         }
 
+        findViewById<Button>(R.id.button3).setOnClickListener {
+            startActivity(Intent(baseContext, FlowActivity::class.java))
+        }
+
 
         // 1. 协程取消
 //        runBlocking {
@@ -97,18 +101,6 @@ class CoroutinesActivity : AppCompatActivity() {
 
 fun log(content: String) {
     Log.d("coroutine_tag", "[${Thread.currentThread().name}]: $content")
-}
-
-interface Test {
-    companion object Key: Test2 {
-        override var name: String
-            get() = TODO("Not yet implemented")
-            set(value) {}
-    }
-}
-
-interface Test2 {
-    var name: String
 }
 
 class MyContinuationInterceptor: ContinuationInterceptor {

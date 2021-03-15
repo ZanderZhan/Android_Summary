@@ -86,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:textAllCaps="false"
-        android:text="9.GetContent\getMultiContent"
+        android:text="10.GetContent、getMultiContent"
         android:gravity="left|center_vertical" />
 
     <Button
@@ -94,7 +94,7 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:textAllCaps="false"
-        android:text="10.OpenDocument、OpenMultiDocument"
+        android:text="11.OpenDocument、OpenMultiDocument"
         android:gravity="left|center_vertical" />
 
     <Button
@@ -102,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:textAllCaps="false"
-        android:text="11.OpenDocumentTree"
+        android:text="12.OpenDocumentTree"
         android:gravity="left|center_vertical" />
 
     <Button
@@ -110,7 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:textAllCaps="false"
-        android:text="12.CreateDocument"
+        android:text="13.CreateDocument"
         android:gravity="left|center_vertical" />
 
 

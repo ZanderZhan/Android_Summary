@@ -141,7 +141,7 @@ class MainActivity: AppCompatActivity() {
         }
 
         // 10. 预定义 contract - GetContent、getMultiContent
-        val getContentLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        val getContentLauncher = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) {
             findViewById<TextView>(R.id.result).text = "get content uri: $it"
         }
         findViewById<Button>(R.id.button9).setOnClickListener {

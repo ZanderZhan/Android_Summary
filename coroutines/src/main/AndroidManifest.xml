@@ -3,7 +3,8 @@
     package="com.example.coroutines">
 
     <application>
-        <activity android:name=".SecondActivity"></activity>
+        <activity android:name=".FlowActivity"></activity>
+        <activity android:name=".SecondActivity" />
         <activity android:name=".FirstActivity" />
         <activity android:name=".CoroutinesActivity" />
     </application>
