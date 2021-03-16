@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.activityresultapi.MainActivity
 import com.example.coroutines.CoroutinesActivity
+import com.example.navigation.NavigationActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +24,10 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.kotlin_coroutine).setOnClickListener {
             startActivity(Intent(baseContext, CoroutinesActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.jetpack_navigation).setOnClickListener {
+            startActivity(Intent(baseContext, NavigationActivity::class.java))
         }
     }
 

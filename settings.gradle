@@ -1,3 +1,4 @@
+include ':navigation'
 include ':benchmarks'
 include ':kotlinx-coroutines-core'
 include ':coroutines'

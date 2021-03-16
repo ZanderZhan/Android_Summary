@@ -33,4 +33,12 @@
         android:text="Kotlin Coroutine"
         android:gravity="left|center_vertical"
         android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/jetpack_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Jetpack Navigation"
+        android:gravity="left|center_vertical"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
