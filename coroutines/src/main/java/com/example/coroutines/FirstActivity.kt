@@ -9,44 +9,72 @@ class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 1. launch 创建 https://pl.kotl.in/HFt360JL5
+        // callback 方式处理异步操作
+//        getNetWorkUserInfo( { info ->
+//            writeInfoToDb(info, { succ ->
+//                if (succ) {
+//                    println("写入成功")
+//                } else {
+//                    println("写入失败")
+//                }
+//            })
+//        })
+
+        // 协程的处理
+//        GlobalScope.launch {
+//            val info = getNetWorkUserInfo2()
+//            val succ = writeInfoToDb2(info)
+//            if (succ) {
+//                println("写入成功")
+//            } else {
+//                println("写入失败")
+//            }
+//        }
+
+        // 基本用法
+//        val job = GlobalScope.launch(Dispatchers.IO + CoroutineName("zander")) {
+//            log("协程体...")
+//            for (i in 0..2) {
+//                log("$i")
+//                delay(1000)
+//            }
+//        }
+//        job.cancel()
+
+
+        // 1. launch 创建
 //        val job = GlobalScope.launch {
 //            log("1")
 //            log("2")
 //            log("3")
 //            try {
-//                delay(100)
+//                delay(1000)
 //            } catch (e: Exception) {
-//                log("exception: $e")
+//                log("exception: ${e.message}")
 //            }
 //            log("4")
 //        }
 //
-//        log("5")    // 5 跟 1 的先后也是不确定的。
-//        job.cancel()    // 这个 cancel 的机制是怎样的？为什么有时候没有跑到 1、2、3，有时候却能跑到？
+//        log("5")    // 5 跟 1 的先后是不确定的。
+//        job.cancel()    // cancel() 也可能在 1 之前，所以 1、2、3、4 可能不会打印出来
 //        log("6")
 
         // 2. async 创建
 //        GlobalScope.launch {
 //            val deferred1 = async {
-//                log("1}")
-//                delay(2000L)
-//                log("2}")
+//                log("1")
+//                log("2")
 //                "deferred1 result"
 //            }
 //            val deferred2 = async {
-//                log("3}")
-//                delay(3000L)
-//                log("4}")
+//                log("3")
+//                log("4")
 //                "deferred2 result"
 //            }
 //
-//            // 这里的 await() 与 join() 有何区别？
-//            // join 会挂起协程，等待 deferred1 执行完完成。如果 deferred 还未 start，则 start。
-//            // await 也会挂起协程，等待并获取 deferred1 的执行结果。
-//            log("5, result: ${deferred1.join()}")
-////            log("5, result: ${deferred2.await()}")
-//            log("6")
+//            // await() 挂起，直到 deferred1 处理完并返回值
+////            log("5, result: ${deferred1.await()}")
+////            log("6")
 //        }
 
         // 3. runBlocking
@@ -56,6 +84,7 @@ class FirstActivity : AppCompatActivity() {
 //            log("2")
 //        }
 //        log("3")
+
 
         // 启动模式
         // 1. DEFAULT
@@ -136,6 +165,27 @@ class FirstActivity : AppCompatActivity() {
 //        }
 //
 //        log("------ end ------")
+    }
 
+    private fun getNetWorkUserInfo(succ: (info: String) -> Unit) {
+        // 网络请求，解析结果...
+        val info = "zander"
+        succ.invoke(info)
+    }
+
+    private fun writeInfoToDb(info: String, cb: (succ: Boolean) -> Unit) {
+        // 写 db 操作...
+        cb.invoke(true)
+    }
+
+    suspend fun getNetWorkUserInfo2(): String {
+        // 网络请求，解析结果...
+        val info = "zander"
+        return info
+    }
+
+    suspend fun writeInfoToDb2(info: String): Boolean {
+        // 写 db 操作...，写入成功，则返回 true
+        return true
     }
 }
