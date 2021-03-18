@@ -87,6 +87,7 @@ class FirstActivity : AppCompatActivity() {
 
 
         // 启动模式
+
         // 1. DEFAULT
         // 使用默认调度器，在 JVM 上，它在后台会有一些线程处理异步任务。
         // 输出 1/2 或者 2/1，取决于 CPU 对于当前线程与后台线程的调度顺序。
@@ -96,75 +97,37 @@ class FirstActivity : AppCompatActivity() {
 //        log("2")
 
         // 2. LAZY
-//        GlobalScope.launch {
-//            log("1")
-//            val job = GlobalScope.launch(start = CoroutineStart.LAZY) {
-//                log("2")
-//                delay(1000L)
-//                log("3")
-//            }
-////            job.start()   // 1 4 2 3
-//            job.join()      // 1 2 3 4
-//            log("4")
+//        log("1")
+//        val job = GlobalScope.launch(start = CoroutineStart.LAZY) {
+//            log("2")
+//            delay(1000L)
+//            log("3")
 //        }
+//        job.start()   // 1 4 2 3 or 1 2 4 3
+//        log("4")
 
         // 3. ATOMIC
-//        GlobalScope.launch {
-//            log("1")
-//            val job = GlobalScope.launch(start = CoroutineStart.ATOMIC) {
-//                log("2")
-//                log("2-1")
-//                delay(1000L)
-//                log("3")
-//            }
-//            job.cancel()  // 2 和 4 的顺序无法确定。
+//        log("1")
+//        val job = GlobalScope.launch(start = CoroutineStart.ATOMIC) {
+//            log("2")
+//            log("3")
+//            delay(1000L)
 //            log("4")
 //        }
+//        job.cancel()  // 1 2 3 5 or 1 5 2 3
+//        log("5")
 
         // 4. UNDISPATCHED
-//        GlobalScope.launch {
-//            log("1")
-//            val job = GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
-//                log("2")
-//                log("2-1")
-//                delay(1000L)
-//                log("3")
-//            }
-//            job.cancel()  // 同一个线程，并且 2 肯定会优于 4 执行
+//        log("1")
+//        val job = GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
+//            log("2")
+//            log("3")
+//            delay(1000L)
 //            log("4")
 //        }
-//        GlobalScope.launch {
-//            log("1")
-//            val job = GlobalScope.launch(start = CoroutineStart.UNDISPATCHED) {
-//                log("2")
-//                delay(1000)
-//                log("3")
-//            }
-//            log("4")
-//            job.join()
-//            log("5")
-//        }
+//        job.cancel()  // 同一个线程，并且 2 肯定会优于 4 执行
+//        log("5")
 
-//        runBlocking {
-//            launch {
-//                delay(200L)
-//                log("Task from runBlocking")
-//            }
-//
-//            coroutineScope { // Creates a coroutine scope
-//                launch {
-//                    delay(500L)
-//                    log("Task from nested launch")
-//                }
-//
-//                delay(100L)
-//                log("Task from coroutine scope") // This line will be printed before the nested launch
-//            }
-//
-//            log("Coroutine scope is over") //
-//        }
-//
-//        log("------ end ------")
     }
 
     private fun getNetWorkUserInfo(succ: (info: String) -> Unit) {
