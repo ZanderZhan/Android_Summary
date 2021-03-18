@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.activityresultapi.MainActivity
 import com.example.coroutines.CoroutinesActivity
 import com.example.navigation.NavigationActivity
+import com.example.room.RoomActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +29,10 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.jetpack_navigation).setOnClickListener {
             startActivity(Intent(baseContext, NavigationActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.room).setOnClickListener {
+            startActivity(Intent(baseContext, RoomActivity::class.java))
         }
     }
 

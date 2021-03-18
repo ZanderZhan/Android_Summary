@@ -1,3 +1,4 @@
+include ':room'
 include ':navigation'
 include ':benchmarks'
 include ':kotlinx-coroutines-core'
