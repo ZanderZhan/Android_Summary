@@ -3,6 +3,7 @@ package com.example.coroutines
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.*
 
 class FirstActivity : AppCompatActivity() {
