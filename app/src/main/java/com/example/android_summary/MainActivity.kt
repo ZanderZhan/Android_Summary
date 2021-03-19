@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.room).setOnClickListener {
             startActivity(Intent(baseContext, RoomActivity::class.java))
         }
+
     }
 
 }
