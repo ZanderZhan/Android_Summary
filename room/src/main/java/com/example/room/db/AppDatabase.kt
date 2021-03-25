@@ -10,6 +10,8 @@ import com.example.room.module.Owner
 import com.example.room.module.OwnerDao
 import com.example.room.module.Puppy
 import com.example.room.module.PuppyDao
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Database(
     entities = [
@@ -18,7 +20,6 @@ import com.example.room.module.PuppyDao
    ],
     version = 1
 )
-
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun ownerDao(): OwnerDao
@@ -29,7 +30,7 @@ abstract class AppDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): RoomDatabase {
+        fun getDatabase(context: Context, scope: CoroutineScope): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
@@ -37,8 +38,13 @@ abstract class AppDatabase: RoomDatabase() {
                     "android_summary_room"
                 ).addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
-                        Log.i("zander", "create successfully")
                         super.onCreate(db)
+                        scope.launch {
+                            INSTANCE?.let {
+                                it.ownerDao().insert(Owner("zander"))
+                            }
+                            Log.i("zander", "create successfully")
+                        }
                     }
                 })
                     .build()

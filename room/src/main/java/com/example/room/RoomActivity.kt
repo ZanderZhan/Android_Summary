@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.room.list.PuppyListLayout
 
+val RoomTag = "RoomActivity"
+
 class RoomActivity : AppCompatActivity() {
     private lateinit var puppyListLayout: PuppyListLayout
 

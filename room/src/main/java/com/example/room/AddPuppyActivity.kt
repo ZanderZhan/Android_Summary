@@ -2,11 +2,17 @@ package com.example.room
 
 import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.lifecycleScope
+import com.example.room.module.Owner
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AddPuppyActivity: AppCompatActivity() {
 
@@ -17,6 +23,19 @@ class AddPuppyActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         layout = AddPuppyLayout(baseContext)
         setContentView(layout)
+
+        val db = (applicationContext as RoomApplication).database
+
+        layout.button.setOnClickListener {
+
+            layout.owner.text?.toString()?.let {
+                lifecycleScope.launch(Dispatchers.IO) {
+                    db.ownerDao().insert(Owner(it))
+                    Log.i(RoomTag, "insert owner $it")
+                }
+            }
+
+        }
     }
 
 }
