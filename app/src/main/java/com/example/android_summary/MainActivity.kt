@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.activityresultapi.MainActivity
 import com.example.coroutines.CoroutinesActivity
+import com.example.hilt.HiltActivity
 import com.example.navigation.NavigationActivity
 import com.example.room.RoomActivity
 
@@ -33,6 +34,10 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.room).setOnClickListener {
             startActivity(Intent(baseContext, RoomActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.hilt).setOnClickListener {
+            startActivity(Intent(baseContext, HiltActivity::class.java))
         }
 
     }

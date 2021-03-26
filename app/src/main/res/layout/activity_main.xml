@@ -49,4 +49,12 @@
         android:text="Room"
         android:gravity="left|center_vertical"
         android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/hilt"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Hilt"
+        android:gravity="left|center_vertical"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
