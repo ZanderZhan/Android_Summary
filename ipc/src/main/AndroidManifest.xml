@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ipc">
+
+    <application>
+
+        <service android:name=".service.MessageService" android:process=":ipc"/>
+
+        <activity android:name=".IPCActivity"></activity>
+    </application>
+
+</manifest>

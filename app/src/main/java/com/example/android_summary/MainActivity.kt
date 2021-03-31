@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.activityresultapi.MainActivity
 import com.example.coroutines.CoroutinesActivity
 import com.example.hilt.HiltActivity
+import com.example.ipc.IPCActivity
 import com.example.navigation.NavigationActivity
 import com.example.room.RoomActivity
 
@@ -38,6 +39,10 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.hilt).setOnClickListener {
             startActivity(Intent(baseContext, HiltActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.ipc).setOnClickListener {
+            startActivity(Intent(baseContext, IPCActivity::class.java))
         }
 
     }

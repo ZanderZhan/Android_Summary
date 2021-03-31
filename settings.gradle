@@ -1,3 +1,4 @@
+include ':ipc'
 include ':hilt'
 include ':room'
 include ':navigation'
