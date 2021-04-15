@@ -65,4 +65,20 @@
         android:text="IPC"
         android:gravity="left|center_vertical"
         android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/handler"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="HANDLER"
+        android:gravity="left|center_vertical"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/coil"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="COIL"
+        android:gravity="left|center_vertical"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>

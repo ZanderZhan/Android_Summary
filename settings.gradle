@@ -1,3 +1,5 @@
+include ':coil'
+include ':handler'
 include ':ipc'
 include ':hilt'
 include ':room'

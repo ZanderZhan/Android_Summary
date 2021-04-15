@@ -2,10 +2,13 @@ package com.example.android_summary
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.activityresultapi.MainActivity
+import com.example.coil.CoilActivity
 import com.example.coroutines.CoroutinesActivity
+import com.example.handler.HandlerActivity
 import com.example.hilt.HiltActivity
 import com.example.ipc.IPCActivity
 import com.example.navigation.NavigationActivity
@@ -43,6 +46,14 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.ipc).setOnClickListener {
             startActivity(Intent(baseContext, IPCActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.handler).setOnClickListener {
+            startActivity(Intent(baseContext, HandlerActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.coil).setOnClickListener {
+            startActivity(Intent(baseContext, CoilActivity::class.java))
         }
 
     }
